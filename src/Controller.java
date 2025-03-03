@@ -3,61 +3,55 @@ package src;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 public class Controller implements ActionListener {
-
-   private SimpleCalculation sc;
-
-   public Controller(SimpleCalculation sc) {
-      this.sc = sc;
+   private SimpleCalculation calculator;
+   public Controller(SimpleCalculation calculator) {
+      this.calculator = calculator;
    }
-
    @Override
-   public void actionPerformed(ActionEvent e) {
-      String getCmd = e.getActionCommand();
-      if ("AC".equals(getCmd)) {
-         this.sc.tf.setText("");
-         this.sc.l.setForeground(Color.BLACK);
-         this.sc.l.setText("=");
-         this.sc.setS("");
+   public void actionPerformed(ActionEvent event) {
+      String command = event.getActionCommand();
+      if ("AC".equals(command)) {
+         this.calculator.textField.setText("");
+         this.calculator.resultLabel.setForeground(Color.BLACK);
+         this.calculator.resultLabel.setText("=");
+         this.calculator.setExpression("");
       } else {
-         int len = this.sc.getS().length();
-         if ("DEL".equals(getCmd)) {
-            if (len > 0) {
-               if (this.sc.getS().charAt(len - 1) == ' ') {
-                  this.sc.setS(this.sc.getS().substring(0, len - 3));
+         int length = this.calculator.getExpression().length();
+         if ("DEL".equals(command)) {
+            if (length > 0) {
+               if (this.calculator.getExpression().charAt(length - 1) == ' ') {
+                  this.calculator.setExpression(this.calculator.getExpression().substring(0, length - 3));
                } else {
-                  this.sc.setS(this.sc.getS().substring(0, len - 1));
+                  this.calculator.setExpression(this.calculator.getExpression().substring(0, length - 1));
                }
             }
-         } else if (!"Ans".equals(getCmd)) {
-            if (len == 0 && (" * ".equals(getCmd) || " / ".equals(getCmd))) {
-               this.sc.setS("");
+         } else if (!"Ans".equals(command)) {
+            if (length == 0 && (" * ".equals(command) || " / ".equals(command))) {
+               this.calculator.setExpression("");
             } else {
-               this.sc.setS(this.sc.tf.getText() + getCmd);
+               this.calculator.setExpression(this.calculator.textField.getText() + command);
             }
          }
-         this.sc.tf.setText(this.sc.getS());
-         String s = this.sc.tf.getText();
-         int lens = s.length();
-         if (lens > 0 && s.charAt(lens - 1) == ' ') {
-            s = s.substring(0, lens - 3);
+         this.calculator.textField.setText(this.calculator.getExpression());
+         String expression = this.calculator.textField.getText();
+         int expressionLength = expression.length();
+         if (expressionLength > 0 && expression.charAt(expressionLength - 1) == ' ') {
+            expression = expression.substring(0, expressionLength - 3);
          }
-         String str = this.sc.result(s);
-         // this.sc.l.setText("= " + this.sc.tinh(this.sc.tf.getText()));
-         if ("MATH ERROR".equals(str)) {
-            this.sc.l.setForeground(Color.RED);
-            this.sc.l.setText("MATH ERROR");
+         String resultString = this.calculator.result(expression);
+         // this.calculator.resultLabel.setText("= " + this.calculator.calculate(this.calculator.textField.getText()));
+         if ("MATH ERROR".equals(resultString)) {
+            this.calculator.resultLabel.setForeground(Color.RED);
+            this.calculator.resultLabel.setText("MATH ERROR");
          } else {
-            this.sc.l.setForeground(Color.BLACK);
-            this.sc.l.setText("= " + str);
+            this.calculator.resultLabel.setForeground(Color.BLACK);
+            this.calculator.resultLabel.setText("= " + resultString);
          }
-
-         if ("Ans".equals(getCmd)) {
-            this.sc.tf.setText(str);
-            this.sc.setS(str);
+         if ("Ans".equals(command)) {
+            this.calculator.textField.setText(resultString);
+            this.calculator.setExpression(resultString);
          }
       }
-
    }
 }
