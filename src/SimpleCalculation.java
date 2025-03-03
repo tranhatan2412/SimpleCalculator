@@ -1,5 +1,6 @@
 package src;
 
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -13,282 +14,280 @@ import javax.swing.JTextField;
 
 public class SimpleCalculation extends JFrame {
 
-   private String s = "";
-   private JPanel ptf, pbtn;
-   protected JTextField tf;
-   protected JLabel l;
-   private JButton btn_0, btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_Ans, btn_DEL, btn_AC,
-         btn_dot, btn_addition, btn_subtraction, btn_multiplication, btn_division, btn_moNgoac, btn_dongNgoac;
+   private String expression = "";
+   private JPanel textPanel, buttonPanel;
+   protected JTextField textField;
+   protected JLabel resultLabel;
+   private JButton button_0, button_1, button_2, button_3, button_4, button_5, button_6, button_7, button_8, button_9, 
+         button_Ans, button_DEL, button_AC, button_dot, button_addition, button_subtraction, button_multiplication, 
+         button_division, button_openParenthesis, button_closeParenthesis;
 
-   public void setS(String s) {
-      this.s = s;
+   public void setExpression(String expression) {
+      this.expression = expression;
    }
 
-   public String getS() {
-      return this.s;
+   public String getExpression() {
+      return this.expression;
    }
 
    public SimpleCalculation() {
-      this.setTitle("Máy tính đơn giản");
+      this.setTitle("Simple Calculator");
       this.setSize(600, 550);
       this.setLocationRelativeTo(null);
 
-      Color c = new Color(252, 115, 3);
-      Font font = new Font("Arial", ABORT, 40);
+      Color accentColor = new Color(252, 115, 3);
+      Font displayFont = new Font("Arial", ABORT, 40);
 
-      ptf = new JPanel();
-      tf = new JTextField();
-      tf.setFont(font);
-      tf.setSize(600, 50);
-      l = new JLabel("= ");
-      l.setFont(font);
-      l.setSize(600, 50);
-      l.setBackground(Color.WHITE);
-      ptf.setLayout(new BorderLayout());
-      ptf.add(tf, BorderLayout.NORTH);
-      ptf.add(l, BorderLayout.SOUTH);
+      textPanel = new JPanel();
+      textField = new JTextField();
+      textField.setFont(displayFont);
+      textField.setSize(600, 50);
+      resultLabel = new JLabel("= ");
+      resultLabel.setFont(displayFont);
+      resultLabel.setSize(600, 50);
+      resultLabel.setBackground(Color.WHITE);
+      textPanel.setLayout(new BorderLayout());
+      textPanel.add(textField, BorderLayout.NORTH);
+      textPanel.add(resultLabel, BorderLayout.SOUTH);
 
-      pbtn = new JPanel();
-      pbtn.setLayout(new GridLayout(4, 5));
-      btn_0 = new JButton("0");
-      btn_0.setFont(font);
-      btn_1 = new JButton("1");
-      btn_1.setFont(font);
-      btn_2 = new JButton("2");
-      btn_2.setFont(font);
-      btn_3 = new JButton("3");
-      btn_3.setFont(font);
-      btn_4 = new JButton("4");
-      btn_4.setFont(font);
-      btn_5 = new JButton("5");
-      btn_5.setFont(font);
-      btn_6 = new JButton("6");
-      btn_6.setFont(font);
-      btn_7 = new JButton("7");
-      btn_7.setFont(font);
-      btn_8 = new JButton("8");
-      btn_8.setFont(font);
-      btn_9 = new JButton("9");
-      btn_9.setFont(font);
-      btn_AC = new JButton("AC");
-      btn_AC.setFont(font);
-      btn_AC.setBackground(c);
-      btn_dot = new JButton(".");
-      btn_dot.setFont(font);
-      btn_DEL = new JButton("DEL");
-      btn_DEL.setFont(font);
-      btn_DEL.setBackground(c);
-      btn_Ans = new JButton("Ans");
-      btn_Ans.setFont(font);
-      btn_moNgoac = new JButton("(");
-      btn_moNgoac.setFont(font);
-      btn_dongNgoac = new JButton(")");
-      btn_dongNgoac.setFont(font);
-      btn_division = new JButton(" / ");
-      btn_division.setFont(font);
-      btn_addition = new JButton(" + ");
-      btn_addition.setFont(font);
-      btn_subtraction = new JButton(" - ");
-      btn_subtraction.setFont(font);
-      btn_multiplication = new JButton(" * ");
-      btn_multiplication.setFont(font);
+      buttonPanel = new JPanel();
+      buttonPanel.setLayout(new GridLayout(4, 5));
+      button_0 = new JButton("0");
+      button_0.setFont(displayFont);
+      button_1 = new JButton("1");
+      button_1.setFont(displayFont);
+      button_2 = new JButton("2");
+      button_2.setFont(displayFont);
+      button_3 = new JButton("3");
+      button_3.setFont(displayFont);
+      button_4 = new JButton("4");
+      button_4.setFont(displayFont);
+      button_5 = new JButton("5");
+      button_5.setFont(displayFont);
+      button_6 = new JButton("6");
+      button_6.setFont(displayFont);
+      button_7 = new JButton("7");
+      button_7.setFont(displayFont);
+      button_8 = new JButton("8");
+      button_8.setFont(displayFont);
+      button_9 = new JButton("9");
+      button_9.setFont(displayFont);
+      button_AC = new JButton("AC");
+      button_AC.setFont(displayFont);
+      button_AC.setBackground(accentColor);
+      button_dot = new JButton(".");
+      button_dot.setFont(displayFont);
+      button_DEL = new JButton("DEL");
+      button_DEL.setFont(displayFont);
+      button_DEL.setBackground(accentColor);
+      button_Ans = new JButton("Ans");
+      button_Ans.setFont(displayFont);
+      button_openParenthesis = new JButton("(");
+      button_openParenthesis.setFont(displayFont);
+      button_closeParenthesis = new JButton(")");
+      button_closeParenthesis.setFont(displayFont);
+      button_division = new JButton(" / ");
+      button_division.setFont(displayFont);
+      button_addition = new JButton(" + ");
+      button_addition.setFont(displayFont);
+      button_subtraction = new JButton(" - ");
+      button_subtraction.setFont(displayFont);
+      button_multiplication = new JButton(" * ");
+      button_multiplication.setFont(displayFont);
 
-      Controller al = new Controller(this);
-      btn_0.addActionListener(al);
-      btn_1.addActionListener(al);
-      btn_2.addActionListener(al);
-      btn_3.addActionListener(al);
-      btn_4.addActionListener(al);
-      btn_5.addActionListener(al);
-      btn_6.addActionListener(al);
-      btn_7.addActionListener(al);
-      btn_8.addActionListener(al);
-      btn_9.addActionListener(al);
-      btn_dot.addActionListener(al);
-      btn_division.addActionListener(al);
-      btn_multiplication.addActionListener(al);
-      btn_addition.addActionListener(al);
-      btn_subtraction.addActionListener(al);
-      btn_moNgoac.addActionListener(al);
-      btn_dongNgoac.addActionListener(al);
-      btn_AC.addActionListener(al);
-      btn_DEL.addActionListener(al);
-      btn_Ans.addActionListener(al);
+      Controller actionListener = new Controller(this);
+      button_0.addActionListener(actionListener);
+      button_1.addActionListener(actionListener);
+      button_2.addActionListener(actionListener);
+      button_3.addActionListener(actionListener);
+      button_4.addActionListener(actionListener);
+      button_5.addActionListener(actionListener);
+      button_6.addActionListener(actionListener);
+      button_7.addActionListener(actionListener);
+      button_8.addActionListener(actionListener);
+      button_9.addActionListener(actionListener);
+      button_dot.addActionListener(actionListener);
+      button_division.addActionListener(actionListener);
+      button_multiplication.addActionListener(actionListener);
+      button_addition.addActionListener(actionListener);
+      button_subtraction.addActionListener(actionListener);
+      button_openParenthesis.addActionListener(actionListener);
+      button_closeParenthesis.addActionListener(actionListener);
+      button_AC.addActionListener(actionListener);
+      button_DEL.addActionListener(actionListener);
+      button_Ans.addActionListener(actionListener);
 
-      pbtn.add(btn_7);
-      pbtn.add(btn_8);
-      pbtn.add(btn_9);
-      pbtn.add(btn_DEL);
-      pbtn.add(btn_AC);
-      pbtn.add(btn_4);
-      pbtn.add(btn_5);
-      pbtn.add(btn_6);
-      pbtn.add(btn_multiplication);
-      pbtn.add(btn_division);
-      pbtn.add(btn_1);
-      pbtn.add(btn_2);
-      pbtn.add(btn_3);
-      pbtn.add(btn_addition);
-      pbtn.add(btn_subtraction);
-      pbtn.add(btn_0);
-      pbtn.add(btn_dot);
-      pbtn.add(btn_Ans);
-      pbtn.add(btn_moNgoac);
-      pbtn.add(btn_dongNgoac);
+      buttonPanel.add(button_7);
+      buttonPanel.add(button_8);
+      buttonPanel.add(button_9);
+      buttonPanel.add(button_DEL);
+      buttonPanel.add(button_AC);
+      buttonPanel.add(button_4);
+      buttonPanel.add(button_5);
+      buttonPanel.add(button_6);
+      buttonPanel.add(button_multiplication);
+      buttonPanel.add(button_division);
+      buttonPanel.add(button_1);
+      buttonPanel.add(button_2);
+      buttonPanel.add(button_3);
+      buttonPanel.add(button_addition);
+      buttonPanel.add(button_subtraction);
+      buttonPanel.add(button_0);
+      buttonPanel.add(button_dot);
+      buttonPanel.add(button_Ans);
+      buttonPanel.add(button_openParenthesis);
+      buttonPanel.add(button_closeParenthesis);
 
       this.setLayout(new BorderLayout());
-      this.add(ptf, BorderLayout.NORTH);
-      this.add(pbtn, BorderLayout.CENTER);
+      this.add(textPanel, BorderLayout.NORTH);
+      this.add(buttonPanel, BorderLayout.CENTER);
 
       this.setVisible(true);
       this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
    }
 
-   public String result(String s) {
-      if (s.isEmpty()) {
+   public String result(String expression) {
+      if (expression.isEmpty()) {
          return "";
       }
-      StringBuilder sb = new StringBuilder(s);
-      if (s.contains("(") || s.contains(")")) {
-         ArrayList<Integer> moNgoac = new ArrayList<>();
-         ArrayList<Integer> dongNgoac = new ArrayList<>();
-         char[] c = s.toCharArray();
-         int len = c.length;
-         for (int i = 0; i < len; ++i) {
-            if (c[i] == '(') {
-               moNgoac.add(i);
-            } else if (c[i] == ')') {
-               dongNgoac.add(i);
+      StringBuilder expressionBuilder = new StringBuilder(expression);
+      if (expression.contains("(") || expression.contains(")")) {
+         ArrayList<Integer> openParenPositions = new ArrayList<>();
+         ArrayList<Integer> closeParenPositions = new ArrayList<>();
+         char[] chars = expression.toCharArray();
+         int length = chars.length;
+         for (int i = 0; i < length; ++i) {
+            if (chars[i] == '(') {
+               openParenPositions.add(i);
+            } else if (chars[i] == ')') {
+               closeParenPositions.add(i);
             }
          }
-         if (moNgoac.size() != dongNgoac.size()) {
+         if (openParenPositions.size() != closeParenPositions.size()) {
             return "";
          }
-         String s1, s2;
-         int mo, dong, j = 1, k, before, after;
-         moNgoac.add(Integer.MAX_VALUE);
-         while (moNgoac.size() > 1) {
-            dong = dongNgoac.get(0);
-            mo = moNgoac.get(j - 1);
-            if (dong < moNgoac.get(j)) {
-               s1 = sb.substring(mo + 1, dong);
-               s2 = this.tinh(s1);
-               before = s1.length();
-               after = s2.length();
-               k = before - after + 2;
-               for (int i = k; i > 0; --i) {
-                  s2 += " ";
+         String innerExpression, calculatedResult;
+         int openPos, closePos, posIndex = 1, spaceDiff, beforeLength, afterLength;
+         openParenPositions.add(Integer.MAX_VALUE);
+         while (openParenPositions.size() > 1) {
+            closePos = closeParenPositions.get(0);
+            openPos = openParenPositions.get(posIndex - 1);
+            if (closePos < openParenPositions.get(posIndex)) {
+               innerExpression = expressionBuilder.substring(openPos + 1, closePos);
+               calculatedResult = this.calculate(innerExpression);
+               beforeLength = innerExpression.length();
+               afterLength = calculatedResult.length();
+               spaceDiff = beforeLength - afterLength + 2;
+               for (int i = spaceDiff; i > 0; --i) {
+                  calculatedResult += " ";
                }
-               sb.replace(mo, dong + 1, s2);
-               moNgoac.remove(j - 1);
-               dongNgoac.remove(0);
-               j = 1;
+               expressionBuilder.replace(openPos, closePos + 1, calculatedResult);
+               openParenPositions.remove(posIndex - 1);
+               closeParenPositions.remove(0);
+               posIndex = 1;
             } else {
-               ++j;
+               ++posIndex;
             }
          }
       }
-      s = sb.toString();
-      s = this.tinh(s);
+      expression = expressionBuilder.toString();
+      expression = this.calculate(expression);
       try {
-         if (Float.parseFloat(s.substring(s.indexOf(".") + 1)) == 0) {
-            return s.substring(0, s.indexOf("."));
+         if (Float.parseFloat(expression.substring(expression.indexOf(".") + 1)) == 0) {
+            return expression.substring(0, expression.indexOf("."));
          }
       } catch (NumberFormatException e) {
       }
-      return s;
+      return expression;
    }
 
-   public String tinhCong(ArrayList<String> arrstr) {
+   public String calculateAddition(ArrayList<String> terms) {
       float result = 0;
-      for (String i : arrstr)
+      for (String term : terms)
          try {
-            result += Float.parseFloat(i);
+            result += Float.parseFloat(term);
          } catch (NumberFormatException e) {
          }
       return result + "";
    }
 
-   public String tinhNhanChia(String s) {
-      String[] str = s.trim().split(" ");
-      String i;
-      int len = str.length;
+   public String calculateMultiplicationDivision(String expression) {
+      String[] tokens = expression.trim().split(" ");
+      String operator;
+      int tokenCount = tokens.length;
       float result = 0;
       try {
-         result = Float.parseFloat(str[0]);
+         result = Float.parseFloat(tokens[0]);
       } catch (NumberFormatException e) {
       }
-      int j = 1;
-      while (j < len) {
-         if (j == len - 1) {
+      int index = 1;
+      while (index < tokenCount) {
+         if (index == tokenCount - 1) {
             return result + "";
          }
-         i = str[j];
-         switch (i) {
+         operator = tokens[index];
+         switch (operator) {
             case "*" -> {
-               result *= Float.parseFloat(str[++j]);
+               result *= Float.parseFloat(tokens[++index]);
             }
             case "/" -> {
-               float end = Float.parseFloat(str[++j]);
-               if (end == 0) {
+               float divisor = Float.parseFloat(tokens[++index]);
+               if (divisor == 0) {
                   return "MATH ERROR";
                } else {
-                  result /= end;
+                  result /= divisor;
                }
             }
          }
-         ++j;
+         ++index;
       }
       return result + "";
    }
 
-   public String tinh(String s) {
-      ArrayList<String> arrstr = new ArrayList<>();
-      char[] c = null;
-      String[] str = null;
-      if (s.contains(" - ")) {
-         c = s.toCharArray();
-         s = "";
-         int len = c.length;
-         for (int i = 0; i < len; ++i) {
-            if (c[i] == '-' && c[i + 1] == ' ') {
-               c[i] = '+';
-               c[i + 1] = '-';
+   public String calculate(String expression) {
+      ArrayList<String> terms = new ArrayList<>();
+      char[] chars = null;
+      String[] tokens = null;
+      if (expression.contains(" - ")) {
+         chars = expression.toCharArray();
+         expression = "";
+         int length = chars.length;
+         for (int i = 0; i < length; ++i) {
+            if (chars[i] == '-' && chars[i + 1] == ' ') {
+               chars[i] = '+';
+               chars[i + 1] = '-';
                ++i;
             }
          }
-         for (char i : c) {
-            s += i;
+         for (char character : chars) {
+            expression += character;
          }
       }
-      if (s.contains("+")) {
-         str = s.split("[+]");
-         for (String i : str) {
-            arrstr.add(i);
+      if (expression.contains("+")) {
+         tokens = expression.split("[+]");
+         for (String token : tokens) {
+            terms.add(token);
          }
       } else {
-         arrstr.add(s);
+         terms.add(expression);
       }
 
-      int len = arrstr.size();
-      String j;
+      int termCount = terms.size();
+      String currentTerm;
 
-      for (int i = 0; i < len; ++i) {
-         j = arrstr.get(i);
-         if (j.contains("*") || j.contains("/")) {
-            arrstr.set(i, this.tinhNhanChia(j));
+      for (int i = 0; i < termCount; ++i) {
+         currentTerm = terms.get(i);
+         if (currentTerm.contains("*") || currentTerm.contains("/")) {
+            terms.set(i, this.calculateMultiplicationDivision(currentTerm));
          }
-         if ("MATH ERROR".equals(arrstr.get(i))) {
+         if ("MATH ERROR".equals(terms.get(i))) {
             return "MATH ERROR";
          }
       }
-      return this.tinhCong(arrstr);
+      return this.calculateAddition(terms);
    }
 
    public static void main(String[] args) {
-      SimpleCalculation simpleCalculation;
-      simpleCalculation = new SimpleCalculation();
-
+      new SimpleCalculation();
    }
 }
